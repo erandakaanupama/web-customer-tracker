@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>customer-list</title>
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
 	<div id="wrapper">
@@ -20,11 +22,11 @@
 				</tr>
 				<!-- loop over and print out customers -->
 				<c:forEach var="tempCustomer" items="${customers}">
-						<tr>
+					<tr>
 						<td>${tempCustomer.firstName}</td>
 						<td>${tempCustomer.lastName}</td>
 						<td>${tempCustomer.email }</td>
-						</tr>
+					</tr>
 				</c:forEach>
 			</table>
 		</div>
