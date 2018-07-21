@@ -26,7 +26,7 @@ public class CustomerDAOIml implements CustomerDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		// create the query
-		Query<Customer> theQuery = currentSession.createQuery("from customer", Customer.class);
+		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
 
 		// exec query
 		List<Customer> customers = theQuery.getResultList();

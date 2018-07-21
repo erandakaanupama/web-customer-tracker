@@ -12,11 +12,11 @@ import javax.persistence.Table;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "fist_name")
+	@Column(name = "first_name")
 	private String firstName;
 
 	@Column(name = "last_name")
