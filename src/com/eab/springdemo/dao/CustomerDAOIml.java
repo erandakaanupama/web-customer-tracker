@@ -25,13 +25,32 @@ public class CustomerDAOIml implements CustomerDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		// create the query
-		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
+		Query<Customer> theQuery = currentSession.createQuery("from Customer order by lastName",
+				Customer.class);
 
 		// exec query
 		List<Customer> customers = theQuery.getResultList();
 
 		// return results
 		return customers;
+	}
+
+	@Override
+	public void saveCustomer(Customer customer) {
+		
+		// get current hibernate session
+		Session session = sessionFactory.getCurrentSession();
+		
+		// save customer
+		session.saveOrUpdate(customer);
+		
+	}
+
+	@Override
+	public Customer getCustomer(int theId) {
+		Session session = sessionFactory.getCurrentSession();
+		Customer customer = session.get(Customer.class, theId);
+		return customer;
 	}
 
 }
