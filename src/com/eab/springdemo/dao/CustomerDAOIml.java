@@ -25,8 +25,7 @@ public class CustomerDAOIml implements CustomerDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		// create the query
-		Query<Customer> theQuery = currentSession.createQuery("from Customer order by lastName",
-				Customer.class);
+		Query<Customer> theQuery = currentSession.createQuery("from Customer order by lastName", Customer.class);
 
 		// exec query
 		List<Customer> customers = theQuery.getResultList();
@@ -37,13 +36,13 @@ public class CustomerDAOIml implements CustomerDAO {
 
 	@Override
 	public void saveCustomer(Customer customer) {
-		
+
 		// get current hibernate session
 		Session session = sessionFactory.getCurrentSession();
-		
-		// save customer
+
+		// save/update customer
 		session.saveOrUpdate(customer);
-		
+
 	}
 
 	@Override
@@ -51,6 +50,27 @@ public class CustomerDAOIml implements CustomerDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Customer customer = session.get(Customer.class, theId);
 		return customer;
+	}
+
+	@Override
+	public void deleteCustomer(int theId) {
+
+		// get the current session
+		Session session = sessionFactory.getCurrentSession();
+
+		// delete customer
+		/*
+		 * Customer customer = session.get(Customer.class, theId);
+		 * session.delete(customer);
+		 */
+
+		// create query
+		Query<Customer> theQuery = session.createQuery("delete from Customer where id=:customerId");
+		theQuery.setParameter("customerId", theId);
+		
+		// execute query
+		theQuery.executeUpdate();
+		
 	}
 
 }
